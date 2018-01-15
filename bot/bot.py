@@ -7,7 +7,8 @@ class Bot(object):
 
     def __init__(self):
         self.k = aiml.Kernel()
-        self.BRAIN_FILE="bot/brain.dump"
+        self.BRAIN_FILE = "brain.dump"
+        self.LEARN_FILE = "std-startup.aiml"
         # To increase the startup speed of the bot it is
         # possible to save the parsed aiml files as a
         # dump. This code checks if a dump exists and
@@ -18,7 +19,7 @@ class Bot(object):
             self.k.loadBrain(self.BRAIN_FILE)
         else:
             print("Parsing aiml files")
-            self.k.bootstrap(learnFiles="bot/std-startup.aiml", commands="load aiml b")
+            self.k.bootstrap(learnFiles=self.LEARN_FILE, commands="load aiml b")
             print("Saving brain file: " + self.BRAIN_FILE)
             self.k.saveBrain(self.BRAIN_FILE)
 
